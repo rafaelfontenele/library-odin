@@ -1,2 +1,14 @@
 <span class="material-symbols-outlined" id="done-icon">done</span>
                         <span class="material-symbols-outlined" id="x-icon">close</span>
+
+
+
+
+
+            <div class="footer">
+                Copyright by 
+                <span>
+                    <button onClick="openGithub()"><div class="logo"><img src="img/et.jpg" alt="et logo"></div></button>
+                </span>
+    
+            </div>

@@ -1,3 +1,6 @@
+.redBlock {
+    background-color: red;
+}
 
 :root {
     --sidebar-blue: rgba(25, 146, 212, 1);
@@ -9,8 +12,8 @@
     --red: #ff7070;
     --light-green: #9fff9c;
     --light-red: #ff9c9c;
-    --unread-background-color: rgba(153, 255, 153, 1);
-    --read-background-color: rgba(153, 255, 153, 1);
+    --unread-background-color: rgba(220, 153, 153, 1);
+    --read-background-color: rgba(153, 220, 153, 1);
 
 }
 
@@ -23,11 +26,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.wrapper {
+body {
     display: grid;
-    width: max(100vw, fit-content);
-    height: 100vh;
-    grid-template-rows: 20% auto 5%;
+    grid-template-rows: 20% fit-content;
 }
 button {
     border: none;
@@ -61,6 +62,8 @@ button:active {
     height: min(fit-content, 100%);
     overflow: auto;
     padding-bottom: 0;
+    display: grid;
+    grid-template-rows: 20vh minmax(70vh, fit-content) 10vh;
 }
 .header {
     background-color: orange;
@@ -72,19 +75,29 @@ button:active {
 }
 .main {
     display: grid;
+    overflow:scroll;
     gap: 10px;
-    padding: 10px 40px;
+    padding: 20px 40px;
     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
 }
 
 .book-card {
     display:grid;
-    border: 2px solid orange;
+    border: 1px solid rgba(0,0,0,0.1);
     background-color: var(--unread-background-color);
     height: 250px;
     grid-template-rows: 2fr 2fr 3fr;
     text-align: center;
+    transition: all var(--transition-time);
 }
+
+.book-card:hover {
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.5) 0px 0px 0px 1px;
+    transform: scale(1.002);
+
+}
+
+
 .book-card .title {
     padding-top: 20px;
 }
@@ -112,8 +125,12 @@ button:active {
     background-color: var(--read-background-color);
 }
 
+.wasRead-display::before {
+    content: 'un';
+}
+    
 .read .wasRead-display::before {
-    content:'un';
+    content:'';
 }
 
 .toggle-read-btn {
@@ -123,11 +140,11 @@ button:active {
     border-radius: 0;
     background-color: var(--unread-background-color);
 }
-    
-.toggle-read-btn * {
-position: absolute;
+
+.delete-book-btn {
+    background-color: rgba(0,0,0,0.07);
+    border-radius: 0;
 }
-    
 
 .card-buttons {
     display: grid;
@@ -147,12 +164,15 @@ position: absolute;
 }
 
 .footer {
-    position: static;
+    background-color: lightcoral;
     width: 100%;    
+    bottom: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    grid-row: 3;
 }
 
 .footer button:hover {
@@ -164,56 +184,3 @@ img {
     width: 30px;
     height: auto;
 }
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* The slider */
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-input:checked + .slider {
-    background-color: #2196F3;
-}
-
-input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-}
-
