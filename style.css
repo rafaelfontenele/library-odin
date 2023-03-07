@@ -13,7 +13,9 @@
     --light-green: #9fff9c;
     --light-red: #ff9c9c;
     --unread-background-color: rgba(220, 153, 153, 1);
+    --unread-background-color-strong: rgba(250, 170, 170, 1);
     --read-background-color: rgba(153, 220, 153, 1);
+    --read-background-color-strong: rgba(170, 250, 170, 1);
 
 }
 
@@ -29,6 +31,12 @@
 body {
     display: grid;
     grid-template-rows: 20% fit-content;
+    width: min(100%);
+    height: min(fit-content, 100%);
+    overflow: auto;
+    padding-bottom: 0;
+    display: grid;
+    grid-template-rows: 20vh minmax(70vh, fit-content) 10vh;
 }
 button {
     border: none;
@@ -57,14 +65,7 @@ button:hover {
 button:active {
     background-color: rgba(0,0,0,0.5);
 }
-.wrapper {
-    width: min(100%);
-    height: min(fit-content, 100%);
-    overflow: auto;
-    padding-bottom: 0;
-    display: grid;
-    grid-template-rows: 20vh minmax(70vh, fit-content) 10vh;
-}
+
 .header {
     background-color: orange;
     display: flex;
@@ -78,6 +79,7 @@ button:active {
     overflow:scroll;
     gap: 10px;
     padding: 20px 40px;
+    overflow-x: hidden;
     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
 }
 
@@ -94,7 +96,10 @@ button:active {
 .book-card:hover {
     box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.5) 0px 0px 0px 1px;
     transform: scale(1.002);
-
+    background-color: var(--unread-background-color-strong);
+}
+.book-card.read:hover {
+    background-color: var(--read-background-color-strong);
 }
 
 

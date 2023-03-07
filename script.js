@@ -25,8 +25,8 @@ class Library {
         return false
     }
 
-    appendBook(title, author, wasRead) {
-        this.bookList.push(new Book(title, author, wasRead));
+    appendBook(bookItem) {
+        this.bookList.push(bookItem);
         this.updateBookGrid(bookGrid);
     }
     
@@ -42,6 +42,15 @@ class Library {
                 return
             }
         }
+    }
+
+    removeBookByIndex(index) {
+        if (index - 1 > this.bookList.length) {
+            return
+        }
+
+        this.bookList.slice(index, 1);
+        this.updateBookGrid();
     }
 
     createDivFromBook(book) {
