@@ -1,0 +1,2 @@
+<span class="material-symbols-outlined" id="done-icon">done</span>
+                        <span class="material-symbols-outlined" id="x-icon">close</span>

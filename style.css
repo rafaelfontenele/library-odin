@@ -9,6 +9,8 @@
     --red: #ff7070;
     --light-green: #9fff9c;
     --light-red: #ff9c9c;
+    --unread-background-color: rgba(153, 255, 153, 1);
+    --read-background-color: rgba(153, 255, 153, 1);
 
 }
 
@@ -78,19 +80,70 @@ button:active {
 .book-card {
     display:grid;
     border: 2px solid orange;
+    background-color: var(--unread-background-color);
     height: 250px;
     grid-template-rows: 2fr 2fr 3fr;
     text-align: center;
 }
+.book-card .title {
+    padding-top: 20px;
+}
+
+.book-card .title::before {
+    content: '"';
+}
+.book-card .title::after {
+    content: '"';
+}
+
+.book-card .author::before {
+    content:'by ';
+}
+
+.book-card .author {
+    padding-top: 10px;
+}
+
+.read {
+    background-color: var(--read-background-color);
+}
+
+.read .toggle-read-btn {
+    background-color: var(--read-background-color);
+}
+
+.read .wasRead-display::before {
+    content:'un';
+}
+
+.toggle-read-btn {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+    background-color: var(--unread-background-color);
+}
+    
+.toggle-read-btn * {
+position: absolute;
+}
+    
 
 .card-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    background: var(--background-grey)
 }
+
+
 
 .card-buttons button:hover {
     background: rgba(0,0,0,0.2);
     border-radius: 0;
+}
+
+.hidden {
+    opacity: 0;
 }
 
 .footer {
@@ -104,12 +157,12 @@ button:active {
 
 .footer button:hover {
     background: none;
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 img {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: auto;
 }
 
 .switch {

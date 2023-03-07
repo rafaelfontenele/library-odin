@@ -23,12 +23,14 @@
         </div>
 
         <div class="main">
-            <div class="book-card">
+            <div class="book-card read">
                 <div class="title">Title</div>
                 <div class="author">Author</div>
                 <div class="card-buttons">
-                    <button class="delete-book-btn" onClick="deleteBook(event)"><span class="material-symbols-outlined">delete</span></button>
-                    <button class="delete-book-btn" onClick="deleteBook(event)"><span class="material-symbols-outlined">delete</span></button>
+                    <button class="toggle-read-btn" onClick="toggleRead(event.target)">
+                        <span class="wasRead-display">read</span>
+                    </button>
+                    <button class="delete-book-btn" onClick="deleteBook(event.target)"><span class="material-symbols-outlined">delete</span></button>
                 </div>                
             
             
