@@ -14,6 +14,7 @@ class Library {
     constructor(bookList = [], bookGrid) {
         this.bookList = bookList;
         this.bookGrid = bookGrid;
+        this.updateBookGrid();
     }
 
     contains(bookTitle) {
@@ -28,6 +29,7 @@ class Library {
     appendBook(bookItem) {
         this.bookList.push(bookItem);
         this.updateBookGrid(bookGrid);
+        alert('lala');
     }
     
     removeBook(title) {
@@ -54,7 +56,7 @@ class Library {
     }
 
     createDivFromBook(book) {
-        bookCard = document.createElement('div');
+        let bookCard = document.createElement('div');
         bookCard.classList.add('book-card');
         if (book.wasRead == true) {
             bookCard.classList.add('read');
@@ -72,6 +74,8 @@ class Library {
 
         let toggleReadBtn = document.createElement('button');
         toggleReadBtn.classList.add('toggle-read-btn');
+        toggleReadBtn.onClick = "toggleRead(event.target)";
+        toggleReadBtn.addEventListener('click', function (e) {e.stopPropagation(); toggleRead(e.target)}, true);
 
         let wasReadDisplay=  document.createElement('span');
         wasReadDisplay.classList.add('wasRead-display')
@@ -79,9 +83,10 @@ class Library {
 
         let deleteBookBtn = document.createElement('button');
         deleteBookBtn.classList.add('delete-book-btn');
+        deleteBookBtn.addEventListener('click', function (e) {e.stopPropagation(); deleteBook(e.target)}, true);
 
         let deleteIcon = document.createElement('span');
-        deleteIcon.classList.add('materials-symbols-outlined');
+        deleteIcon.classList.add('material-symbols-outlined');
         deleteIcon.textContent = 'delete';
 
         toggleReadBtn.appendChild(wasReadDisplay);
@@ -90,20 +95,24 @@ class Library {
         cardButtons.appendChild(deleteBookBtn);
 
         bookCard.appendChild(title);
-        bookCard.appendBook(author);
+        bookCard.appendChild(author);
         bookCard.appendChild(cardButtons);
         
         return bookCard;
     }
 
-    updateBookGrid(bookGrid) {
-        while (bookGrid.firstChild) {
-            bookGrid.children.slice(0,1);
+    updateBookGrid() {
+        while (this.bookGrid.firstChild) { //removing all items from html grid
+            this.bookGrid.removeChild(this.bookGrid.firstChild);
         }
-        this.bookList.forEach(book => {
-            let bookItemDiv = createDivFromBook(book);
-            bookGrid.children.push(bookItemDiv)
+        this.bookList.forEach(book => { //inserting everything else again, including changes made
+            let bookItemDiv = this.createDivFromBook(book);
+            this.bookGrid.appendChild(bookItemDiv)
         })
+    }
+
+    alertHi() {
+        alert('hi');
     }
 
 }
@@ -130,19 +139,22 @@ function toggleRead(target) {
     }
 }
 
-function handlePlusBookClick() {
-    newBook = document.createElement('div');
-    bookGrid.appendChild(newBook);
+function handlePlusBookClick(library) {
+    let newBook = new Book(title='Titulo', author = 'Autor', wasRead = false);
+    library.appendBook(newBook);
 }
 
-function handleMinusBookClick() {
-    alert(bookGrid.lastChild)
-    bookGrid.removeChild(bookGrid.lastChild);
+function handleMinusBookClick(lib) {
+    library.removeBookByIndex(Library.bookList.length - 1);    
 }
 
 function handleLogInClick() {
 }
 
 function deleteBook(event) {
-    alert(event.target.parent);
+    alert(event);
 }
+
+let newBook = new Book(title='Titulo', author = 'Autor', wasRead = false);
+let lib = new Library([newBook, newBook, newBook], bookGrid);
+

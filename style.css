@@ -145,10 +145,16 @@ button:active {
     border-radius: 0;
     background-color: var(--unread-background-color);
 }
+.toggle-read-btn * {
+    pointer-events: none;
+}
 
 .delete-book-btn {
     background-color: rgba(0,0,0,0.07);
     border-radius: 0;
+}
+.delete-book-btn * {
+    pointer-events: none;
 }
 
 .card-buttons {
