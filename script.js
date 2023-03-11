@@ -50,10 +50,11 @@ class Library {
 
     removeBookByIndex(index) {
         if (index - 1 > this.bookList.length) {
+            console.log('returned')
             return
         }
 
-        this.bookList.slice(index, 1);
+        this.bookList.pop(index);
         this.updateBookGrid();
     }
 
@@ -139,13 +140,9 @@ function toggleRead(e) {
     }
 }
 
-function handlePlusBookClick(library) {
-    let newBook = new Book(title='Titulo', author = 'Autor', wasRead = false);
-    lib.appendBook(newBook);
-}
+function openForm() {
+    
 
-function handleMinusBookClick(lib) {
-    lib.removeBookByIndex(Library.bookList.length - 1);    
 }
 
 function handleLogInClick() {
@@ -156,13 +153,15 @@ function deleteBook(e) {
     let clickedCard = clickedButton.parentNode.parentNode;
 
     if (clickedButton.classList.contains('clicked')) {
-        lib.removeBookByIndex(clickedCard.id);
+        clickedCard.classList.add('hidden');
+        setTimeout((e) => {lib.removeBookByIndex(clickedCard.id);
+        }, 200)
     } else {
         clickedButton.classList.add('clicked');
-        //clickedButton.querySelector('span').textContent = 'check';
+        clickedButton.querySelector('span').textContent = 'close'; //changes delete-button icon from trashcan to X
         setTimeout( function () {
             clickedButton.classList.remove('clicked');
-          //  clickedButton.querySelector('span').textContent = 'delete';
+            clickedButton.querySelector('span').textContent = 'delete';
         }, 3000);
     }
 
