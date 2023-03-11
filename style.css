@@ -26,6 +26,10 @@
     font-size: 20px;
     font-weight: 500;
     font-family: 'Roboto', sans-serif;
+    -webkit-transition: -moz-transform .3s ease-out; 
+   -moz-transition: -webkit-transform .3s ease-out; 
+   -o-transition: -o-transform .3s ease-out; 
+    transition: transform .3s ease-out; 
 }
 
 body {
@@ -44,6 +48,7 @@ button {
     border-style: none;
     background: none;
     border-radius: 10%;
+    cursor: pointer;
 }
 
 .headerTitle {
@@ -152,7 +157,18 @@ button:active {
 .delete-book-btn {
     background-color: rgba(0,0,0,0.07);
     border-radius: 0;
+    transition: transform 1000ms ease;
 }
+
+.delete-book-btn.clicked{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    background-color: rgba(230,20,20,0.8);
+}
+
+.delete-book-btn.clicked span {
+    transform: scale(1.50)
+}
+
 .delete-book-btn * {
     pointer-events: none;
 }
@@ -160,12 +176,12 @@ button:active {
 .card-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background: var(--background-grey)
+    background: var(--background-grey);
 }
 
 
 
-.card-buttons button:hover {
+.card-buttons button:not(.delete-book-btn):hover {
     background: rgba(0,0,0,0.2);
     border-radius: 0;
 }

@@ -7,6 +7,9 @@ class Book {
         this.wasRead = wasRead;
     }
 
+    toggleRead()                                    {
+        this.wasRead = !this.wasRead;
+    }
 
 }
 
@@ -29,11 +32,10 @@ class Library {
     appendBook(bookItem) {
         this.bookList.push(bookItem);
         this.updateBookGrid(bookGrid);
-        alert('lala');
     }
     
     removeBook(title) {
-        if (!this.contains(title)) {
+        if (!this.bookList.contains(title)) {
             return;
         }
         for (let i=0;i<this.bookList.length;i++) {
@@ -55,8 +57,9 @@ class Library {
         this.updateBookGrid();
     }
 
-    createDivFromBook(book) {
+    createDivFromBook(book, id) {
         let bookCard = document.createElement('div');
+        bookCard.id = id;
         bookCard.classList.add('book-card');
         if (book.wasRead == true) {
             bookCard.classList.add('read');
@@ -75,7 +78,7 @@ class Library {
         let toggleReadBtn = document.createElement('button');
         toggleReadBtn.classList.add('toggle-read-btn');
         toggleReadBtn.onClick = "toggleRead(event.target)";
-        toggleReadBtn.addEventListener('click', function (e) {e.stopPropagation(); toggleRead(e.target)}, true);
+        toggleReadBtn.addEventListener('click', function (e) {e.stopPropagation(); toggleRead(e)}, true);
 
         let wasReadDisplay=  document.createElement('span');
         wasReadDisplay.classList.add('wasRead-display')
@@ -83,7 +86,7 @@ class Library {
 
         let deleteBookBtn = document.createElement('button');
         deleteBookBtn.classList.add('delete-book-btn');
-        deleteBookBtn.addEventListener('click', function (e) {e.stopPropagation(); deleteBook(e.target)}, true);
+        deleteBookBtn.addEventListener('click', function (e) {e.stopPropagation(); deleteBook(e)}, true);
 
         let deleteIcon = document.createElement('span');
         deleteIcon.classList.add('material-symbols-outlined');
@@ -105,15 +108,12 @@ class Library {
         while (this.bookGrid.firstChild) { //removing all items from html grid
             this.bookGrid.removeChild(this.bookGrid.firstChild);
         }
-        this.bookList.forEach(book => { //inserting everything else again, including changes made
-            let bookItemDiv = this.createDivFromBook(book);
+        this.bookList.forEach((book, index) => { //inserting everything else again, including changes made
+            let bookItemDiv = this.createDivFromBook(book, index);
             this.bookGrid.appendChild(bookItemDiv)
         })
     }
 
-    alertHi() {
-        alert('hi');
-    }
 
 }
 
@@ -124,37 +124,53 @@ function openGithub() {
     open('https://github.com/etzoider');
 }
 
-function toggleRead(target) {
-    clickedCard = target.parentNode.parentNode;
-    doneIcon = clickedCard.querySelector('#done-icon');
-    xIcon = clickedCard.querySelector('#x-icon');
+function toggleRead(e) {
+
+    let clickedCard = e.target.parentNode.parentNode;
+    
+    let bookClicked = lib.bookList[clickedCard.id];
+    bookClicked.toggleRead();
+    console.log(lib.bookList.forEach(book => {book.wasRead}))
+    
     if (clickedCard.classList.contains('read')) {
         clickedCard.classList.remove('read');
-        // doneIcon.classList.add('hidden');
-        // xIcon.classList.remove('hidden');
     } else {
         clickedCard.classList.add('read');
-        // doneIcon.classList.remove('hidden');
-        // xIcon.classList.add('hidden');
     }
 }
 
 function handlePlusBookClick(library) {
     let newBook = new Book(title='Titulo', author = 'Autor', wasRead = false);
-    library.appendBook(newBook);
+    lib.appendBook(newBook);
 }
 
 function handleMinusBookClick(lib) {
-    library.removeBookByIndex(Library.bookList.length - 1);    
+    lib.removeBookByIndex(Library.bookList.length - 1);    
 }
 
 function handleLogInClick() {
 }
 
-function deleteBook(event) {
-    alert(event);
+function deleteBook(e) {
+    let clickedButton = e.target;
+    let clickedCard = clickedButton.parentNode.parentNode;
+
+    if (clickedButton.classList.contains('clicked')) {
+        lib.removeBookByIndex(clickedCard.id);
+    } else {
+        clickedButton.classList.add('clicked');
+        //clickedButton.querySelector('span').textContent = 'check';
+        setTimeout( function () {
+            clickedButton.classList.remove('clicked');
+          //  clickedButton.querySelector('span').textContent = 'delete';
+        }, 3000);
+    }
+
 }
 
 let newBook = new Book(title='Titulo', author = 'Autor', wasRead = false);
-let lib = new Library([newBook, newBook, newBook], bookGrid);
+let newBook2 = new Book(title='Titulo', author = 'Autor', wasRead = false);
+let newBook3 = new Book(title='Titulo', author = 'Autor', wasRead = false);
+
+let lib = new Library([newBook, newBook2, newBook3], bookGrid);
 
