@@ -141,8 +141,16 @@ function toggleRead(e) {
 }
 
 function openForm() {
-    
+    let formBackgroundDiv = document.querySelector('.form-background');
+    let formDiv = document.querySelector('.form');
 
+    formBackgroundDiv.classList.add('active');
+    formDiv.classList.add('active');
+
+}
+
+function closeForm(event) {
+    event.target.classList.remove('active');
 }
 
 function handleLogInClick() {
