@@ -13,9 +13,33 @@
 </head>
 <body>
 
-    <div class="form-background active" onClick="closeForm(event)">
-        <div class="form active">FORM</div>
+    <div class="form-background active" onClick=>
+        <div class="form active">
+
+            <form id="form" action="return addBook(this)">
+
+                <span>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" label='title' placeholder="My little pony">
+                </span>
+
+                <span>
+                    <label for="author">Author:</label>
+                    <input type="text" id='author' name="author" label='author' placeholder="by John Smith">
+                </span>
+
+                <span>
+                    <label for="wasRead">Mark as read?</label>
+                    <input type="checkbox" id='wasRead' name='wasRead' label='wasRead'> <span class="checkmark"></span>
+                </span>
+
+                <div class="button">SUBMIT</div>
+            </form>
+
+        </div>
+
     </div>
+    
         <div class="header">
             <span class="headerTitle">Le grand library</span>
             <button class="plus-btn" onClick="openForm()">+</button>

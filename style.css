@@ -1,7 +1,3 @@
-.redBlock {
-    background-color: red;
-}
-
 :root {
     --sidebar-blue: rgba(25, 146, 212, 1);
     --background-grey: rgba(226,232,240,1);
@@ -55,12 +51,44 @@ body {
 }
 .form {
     opacity: 0;
+    padding: 3% 3%;
     pointer-events: none;
-    padding: 5% 15%;
     width: 30vw;
     height: 60vh;
-    background-color: green;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,155,0,1);
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
 }
+#form {
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#form span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+#form input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;    
+}
+
 
 .active {
     opacity: 1;

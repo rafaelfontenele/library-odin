@@ -150,7 +150,10 @@ function openForm() {
 }
 
 function closeForm(event) {
-    event.target.classList.remove('active');
+    let formBackgroundDiv = document.querySelector('.form-background');
+    let formDiv = document.querySelector('.form');
+    formBackgroundDiv.classList.remove('active');
+    formDiv.classList.remove('active');
 }
 
 function handleLogInClick() {
