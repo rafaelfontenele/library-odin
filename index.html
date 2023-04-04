@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <div class="form-background active" onClick=>
+    <div class="form-background active" onClick="closeForm()">
         <div class="form active">
 
             <form id="form" action="return addBook(this)">
@@ -29,12 +29,16 @@
                 </span>
 
                 <span>
-                    <label for="wasRead">Mark as read?</label>
-                    <input type="checkbox" id='wasRead' name='wasRead' label='wasRead'> <span class="checkmark"></span>
-                </span>
+                    
+                    <label for="wasRead">Mark as read?
+                        <input type="checkbox" id="wasRead" class="checkbox">
 
-                <div class="button">SUBMIT</div>
-            </form>
+                    </label>
+
+            </span>
+
+            <button type="submit">Add book</button>
+        </form>
 
         </div>
 

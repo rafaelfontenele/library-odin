@@ -74,6 +74,12 @@ body {
     align-items: center;
 }
 
+#form ::placeholder{
+    font-size: 16px;
+    opacity: 0.8;
+    padding-left: 3px;
+}
+
 #form span {
     display: flex;
     align-items: center;
@@ -81,14 +87,36 @@ body {
     gap: 15px;
 }
 
+#form label[for='wasRead'] {
+    display:flex;
+    gap: 50px;
+    
+}
 #form input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
+    transform: scale(2.5);
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
-    height: 0;
-    width: 0;    
 }
 
+#form button[type=submit] {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px 4px;
+    font-weight: 400;
+    background-color: white;
+}
+
+#form button[type=submit]:hover {
+    background-color: rgba(0,0,0, 0.7);
+    color: white;
+    transform: scale(1.05)
+}
+
+#form button[type=submit]:active {
+    background-color: white;
+    color: black;
+    transform: scale(0.95)
+}
 
 .active {
     opacity: 1;
