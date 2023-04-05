@@ -149,6 +149,11 @@ function openForm() {
 
 }
 
+function addBook(x) {
+    console.log(x);
+    closeForm();
+}
+
 function closeForm(event) {
     let formBackgroundDiv = document.querySelector('.form-background');
     let formDiv = document.querySelector('.form');

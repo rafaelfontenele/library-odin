@@ -16,7 +16,7 @@
     <div class="form-background active" onClick="closeForm()">
         <div class="form active">
 
-            <form id="form" action="return addBook(this)">
+            <form id="form" action='javascript:' onsubmit="addBook(this)" onclick="event.stopPropagation()">
 
                 <span>
                     <label for="title">Title:</label>
@@ -31,7 +31,7 @@
                 <span>
                     
                     <label for="wasRead">Mark as read?
-                        <input type="checkbox" id="wasRead" class="checkbox">
+                        <input type="checkbox" name="wasRead" id="wasRead" class="checkbox">
 
                     </label>
 
