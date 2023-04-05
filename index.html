@@ -13,32 +13,26 @@
 </head>
 <body>
 
-    <div class="form-background active" onClick="closeForm()">
-        <div class="form active">
+    <div class="form-background" onClick="closeForm()">
+        <div class="form-wrapper">
 
-            <form id="form" action='javascript:' onsubmit="addBook(this)" onclick="event.stopPropagation()">
+            <form id="addBook-form" onsubmit="addBook(this); return false;" onclick="event.stopPropagation()">
 
-                <span>
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="title" label='title' placeholder="My little pony">
-                </span>
 
-                <span>
                     <label for="author">Author:</label>
                     <input type="text" id='author' name="author" label='author' placeholder="by John Smith">
-                </span>
 
-                <span>
-                    
-                    <label for="wasRead">Mark as read?
-                        <input type="checkbox" name="wasRead" id="wasRead" class="checkbox">
 
-                    </label>
+                    <label for="wasRead">Mark as read?</label>
+                    <input type="checkbox" name="wasRead" id="wasRead" class="checkbox">
 
-            </span>
 
-            <button type="submit">Add book</button>
-        </form>
+
+                    <button type="submit">Add book</button>
+        
+            </form>
 
         </div>
 
@@ -46,27 +40,14 @@
     
         <div class="header">
             <span class="headerTitle">Le grand library</span>
-            <button class="plus-btn" onClick="openForm()">+</button>
+            <button class="plus-btn" onClick="addFakeBook()">+</button>
 
             <button class="log-in-btn" onClick="handleLogInClick()">Log in</button>
 
         </div>
 
         <div class="main">
-            <div class="book-card">
-                <div class="title">Title</div>
-                <div class="author">Author</div>
-                <div class="card-buttons">
-                    <button class="toggle-read-btn" onClick="toggleRead(event.target)">
-                        <span class="wasRead-display">read</span>
-                    </button>
-                    <button class="delete-book-btn" onClick="deleteBook(event.target)"><span class="material-symbols-outlined">delete</span></button>
-                </div>      
-            </div>
-
-         
-            <div class="redBlock"></div>
-            <div class="redBlock"></div>
+            
 
 
         

@@ -142,21 +142,32 @@ function toggleRead(e) {
 
 function openForm() {
     let formBackgroundDiv = document.querySelector('.form-background');
-    let formDiv = document.querySelector('.form');
+    let formDiv = document.querySelector('.form-wrapper');
 
     formBackgroundDiv.classList.add('active');
     formDiv.classList.add('active');
 
 }
+function resetForm(form) {
+    form.title.value = '';
+    form.author.value = '';
+    form.wasRead.checked = false;
+}
+function addBook(form) {
+    const title = form.title.value;
+    const author = form.author.value;
+    const wasRead = form.wasRead.checked;
+    
+    const book = new Book(title, author, wasRead);
+    lib.appendBook(book);
 
-function addBook(x) {
-    console.log(x);
+    resetForm(form);
     closeForm();
 }
 
 function closeForm(event) {
     let formBackgroundDiv = document.querySelector('.form-background');
-    let formDiv = document.querySelector('.form');
+    let formDiv = document.querySelector('.form-wrapper');
     formBackgroundDiv.classList.remove('active');
     formDiv.classList.remove('active');
 }
@@ -181,6 +192,12 @@ function deleteBook(e) {
         }, 3000);
     }
 
+}
+
+function addFakeBook() {
+    const randomNumber = Math.floor(Math.random() * 1000);
+    const wasRead = (randomNumber > 500) ? true : false;
+    lib.appendBook(new Book(`${randomNumber}`, 'Author', wasRead))
 }
 
 let newBook = new Book(title='Titulo', author = 'Autor', wasRead = false);

@@ -12,3 +12,16 @@
                 </span>
     
             </div>
+
+
+
+
+
+
+        <label for="author">Author:</label>
+        <input type="text" id='author' name="author" label='author' placeholder="by John Smith">
+
+
+        <label for="wasRead">Mark as read?</label>
+        <input type="checkbox" name="wasRead" id="wasRead" class="checkbox">
+
