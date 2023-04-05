@@ -200,9 +200,12 @@ function addFakeBook() {
     lib.appendBook(new Book(`${randomNumber}`, 'Author', wasRead))
 }
 
-let newBook = new Book(title='Titulo', author = 'Autor', wasRead = false);
-let newBook2 = new Book(title='Titulo', author = 'Autor', wasRead = false);
-let newBook3 = new Book(title='Titulo', author = 'Autor', wasRead = false);
+let newBook = new Book(title='1', author = 'Autor', wasRead = false);
+let newBook2 = new Book(title='2', author = 'Autor', wasRead = false);
+let newBook3 = new Book(title='3', author = 'Autor', wasRead = false);
+let newBook4 = new Book(title='4', author = 'Autor', wasRead = false);
+let newBook5 = new Book(title='5', author = 'Autor', wasRead = false);
+let newBook6 = new Book(title='6', author = 'Autor', wasRead = false);
 
-let lib = new Library([newBook, newBook2, newBook3], bookGrid);
+let lib = new Library([newBook, newBook2, newBook3,newBook4,newBook5,newBook6], bookGrid);
 
