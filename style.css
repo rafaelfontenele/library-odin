@@ -58,6 +58,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease-in-out;
     background-color: rgba(255,155,0,1);
     border-radius: 10px;
     border: 1px solid rgba(0,0,0,0.4);
@@ -73,18 +74,16 @@ body {
     align-items: center;
 }
 
+#addBook-form input {
+    width: 90%;
+}
+
 #addBook-form ::placeholder{
     font-size: 16px;
     opacity: 0.8;
     padding-left: 3px;
 }
 
-#addBook-form span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-}
 
 #addBook-form label[for='wasRead'] {
     display:flex;
@@ -95,6 +94,10 @@ body {
     transform: scale(2.5);
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+}
+
+label[for=wasRead] {
+    background-color: red;
 }
 
 #addBook-form button[type=submit] {
@@ -181,9 +184,10 @@ button:active {
 
 .book-card {
     display:grid;
+    width: min(100%, 1fr);
+    height: 250px;
     border: 1px solid rgba(0,0,0,0.1);
     background-color: var(--unread-background-color);
-    height: 250px;
     grid-template-rows: 2fr 2fr 3fr;
     text-align: center;
     transition: all var(--transition-time) ease-in-out;
@@ -269,6 +273,7 @@ button:active {
 
 .card-buttons {
     display: grid;
+    width: 100%;
     grid-template-columns: 1fr 1fr;
     background: var(--background-grey);
 }

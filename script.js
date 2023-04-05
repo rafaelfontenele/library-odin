@@ -146,17 +146,33 @@ function openForm() {
     formDiv.classList.add('active');
 
 }
+
 function resetForm(form) {
     form.title.value = '';
     form.author.value = '';
     form.wasRead.checked = false;
 }
+
+function formatText(text) {
+    text = text.split(' ');
+    for (let i = 0; i < text.length; i++) {
+        if (i === 0 || text[i].length > 3) {
+            text[i] = text[i].charAt(0).toUpperCase() + text[i].substring(1);
+            console.log(text[i]);
+        }
+    }
+    return text.join(' ');
+}
 function addBook(form) {
-    const title = form.title.value;
-    const author = form.author.value;
+    const title = formatText(form.title.value);
+    const author = formatText(form.author.value);
     const wasRead = form.wasRead.checked;
     
-    const book = new Book(title, author, wasRead);
+    if (!title) {
+        return
+    }
+    
+    const book = new Book(title, author ? author : 'Unknown', wasRead);
     lib.appendBook(book);
 
     resetForm(form);
@@ -199,8 +215,9 @@ function addFakeBook() {
 }
 
 let lib = new Library([
-    new Book('The little mermaid', 'Mr Ipsum', false),
+    new Book('The Tao of Lorem', 'Mr Ipsum', false),
     new Book('How to tame a pirate', 'Hamber Eard', false),
+    new Book('AAAAABBBBBCCCCCAAAAABBBBBCCCCCAAAAABBBBBCCCCC', 'AAAAABBBBBCCCCCAAAAABBBBBCCCCCAAAAABBBBBCCCCC', false),
     new Book('Corruption, bribery, and other tales...', 'Louis Ignacius', false)
 ], bookGrid);
 

@@ -14,20 +14,20 @@
 <body>
 
     <div class="form-background" onClick="closeForm()">
-        <div class="form-wrapper">
+        <div class="form-wrapper" onclick="event.stopPropagation()">
 
-            <form id="addBook-form" onsubmit="addBook(this); return false;" onclick="event.stopPropagation()">
+            <form id="addBook-form" onsubmit="event.preventDefault();addBook(this); return false;">
 
                     <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" label='title' placeholder="My little pony">
+                    <input type="text" maxlength="30" id="title" name="title" label='title' placeholder="My little pony">
 
                     <label for="author">Author:</label>
-                    <input type="text" id='author' name="author" label='author' placeholder="by John Smith">
+                    <input type="text" maxlength="30" id='author' name="author" label='author' placeholder="by John Smith">
 
 
-                    <label for="wasRead">Mark as read?</label>
+                    <label for="wasRead">READ
                     <input type="checkbox" name="wasRead" id="wasRead" class="checkbox">
-
+                    </label>
 
 
                     <button type="submit">Add book</button>
