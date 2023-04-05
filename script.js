@@ -50,11 +50,9 @@ class Library {
 
     removeBookByIndex(index) {
         if (index - 1 > this.bookList.length) {
-            console.log('returned')
             return
         }
-
-        this.bookList.pop(index);
+        this.bookList.splice(index, 1);
         this.updateBookGrid();
     }
 
@@ -200,12 +198,9 @@ function addFakeBook() {
     lib.appendBook(new Book(`${randomNumber}`, 'Author', wasRead))
 }
 
-let newBook = new Book(title='1', author = 'Autor', wasRead = false);
-let newBook2 = new Book(title='2', author = 'Autor', wasRead = false);
-let newBook3 = new Book(title='3', author = 'Autor', wasRead = false);
-let newBook4 = new Book(title='4', author = 'Autor', wasRead = false);
-let newBook5 = new Book(title='5', author = 'Autor', wasRead = false);
-let newBook6 = new Book(title='6', author = 'Autor', wasRead = false);
-
-let lib = new Library([newBook, newBook2, newBook3,newBook4,newBook5,newBook6], bookGrid);
+let lib = new Library([
+    new Book('The little mermaid', 'Mr Ipsum', false),
+    new Book('How to tame a pirate', 'Hamber Eard', false),
+    new Book('Corruption, bribery, and other tales...', 'Louis Ignacius', false)
+], bookGrid);
 
