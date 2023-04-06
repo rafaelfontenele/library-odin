@@ -217,7 +217,6 @@ function addFakeBook() {
 let lib = new Library([
     new Book('The Tao of Lorem', 'Mr Ipsum', false),
     new Book('How to tame a pirate', 'Hamber Eard', false),
-    new Book('AAAAABBBBBCCCCCAAAAABBBBBCCCCCAAAAABBBBBCCCCC', 'AAAAABBBBBCCCCCAAAAABBBBBCCCCCAAAAABBBBBCCCCC', false),
     new Book('Corruption, bribery, and other tales...', 'Louis Ignacius', false)
 ], bookGrid);
 
