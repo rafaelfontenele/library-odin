@@ -12,7 +12,7 @@
     --unread-background-color-strong: rgba(250, 170, 170, 1);
     --read-background-color: rgba(153, 220, 153, 1);
     --read-background-color-strong: rgba(170, 250, 170, 1);
-
+    --checkbox-font-color: rgba(0,0,0,9);
 }
 
 * {
@@ -91,14 +91,39 @@ body {
     
 }
 #addBook-form input[type="checkbox"] {
-    transform: scale(2.5);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
+    display: hidden;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    opacity: 0;
+    position: absolute;
+    left: -999999px;
 }
 
-label[for=wasRead] {
-    background-color: red;
+
+.checkbox-display {
+    transition: all 400ms ease-in-out;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: var(--unread-background-color-strong);
+    color: var(--checkbox-font-color);
+    
 }
+.checkbox-display::before {
+    content: 'un';
+}
+
+#addBook-form input[type="checkbox"]:checked + .checkbox-display {
+    background-color: var(--read-background-color);
+}
+
+#addBook-form input[type="checkbox"]:checked + .checkbox-display::before {
+    content: '';
+}
+
+
 
 #addBook-form button[type=submit] {
     border: 1px solid black;

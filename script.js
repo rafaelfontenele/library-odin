@@ -103,7 +103,18 @@ class Library {
         return bookCard;
     }
 
+    displayPointerIcon() {
+        console.log('zero books to show');
+        
+    }
+
     updateBookGrid() {
+
+        if (this.bookList.length == 0) {
+            this.displayPointerIcon();
+            return;
+        }
+
         while (this.bookGrid.firstChild) { //removing all items from html grid
             this.bookGrid.removeChild(this.bookGrid.firstChild);
         }
@@ -117,7 +128,10 @@ class Library {
 }
 
 
-
+function handleCheckboxClick() {
+    const checkbox = document.querySelector('#wasRead');
+    checkbox.checked = !checkbox.checked
+}
 
 function openGithub() {
     open('https://github.com/etzoider');
@@ -214,9 +228,11 @@ function addFakeBook() {
     lib.appendBook(new Book(`${randomNumber}`, 'Author', wasRead))
 }
 
-let lib = new Library([
-    new Book('The Tao of Lorem', 'Mr Ipsum', false),
-    new Book('How to tame a pirate', 'Hamber Eard', false),
-    new Book('Corruption, bribery, and other tales...', 'Louis Ignacius', false)
-], bookGrid);
+
+let books = [new Book('The Tao of Lorem', 'Mr Ipsum', false),
+new Book('How to tame a pirate', 'Hamber Eard', false),
+new Book('Corruption, bribery, and other tales...', 'Louis Ignacius', false)]
+
+
+let lib = new Library([], bookGrid);
 
