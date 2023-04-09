@@ -103,17 +103,17 @@ class Library {
         return bookCard;
     }
 
-    displayPointerIcon() {
-        console.log('zero books to show');
+    toggleArrowIcon() {
         
+        const arrow = this.bookGrid.querySelector('.arrow');
+        
+        (arrow.classList.contains('hidden') ? arrow.classList.remove('hidden') : arrow.classList.add('hidden'));
+
     }
 
     updateBookGrid() {
 
-        if (this.bookList.length == 0) {
-            this.displayPointerIcon();
-            return;
-        }
+        this.toggleArrowIcon()
 
         while (this.bookGrid.firstChild) { //removing all items from html grid
             this.bookGrid.removeChild(this.bookGrid.firstChild);
