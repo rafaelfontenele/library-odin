@@ -102,28 +102,60 @@ class Library {
         
         return bookCard;
     }
+    toggleArrow() {
+        const arrow = document.querySelector('#arrow');
+        if (arrow.classList.contains('hidden')) {
+            this.showArrow();
+        } else {
+            this.hideArrow();
+        }
+    }
 
-    toggleArrowIcon() {
-        
-        const arrow = this.bookGrid.querySelector('.arrow');
-        
-        (arrow.classList.contains('hidden') ? arrow.classList.remove('hidden') : arrow.classList.add('hidden'));
+    showArrow() {
+        const arrow = document.querySelector('.arrow');
+        const plusButton = document.querySelector('.plus-btn');
+        if (arrow.classList.contains('hidden')) {
+            arrow.classList.remove('hidden');
+        }
+        if (!plusButton.classList.contains('animate-bg')) {
+            plusButton.classList.add('animate-bg');
+        }
 
     }
 
-    updateBookGrid() {
+    hideArrow() {
+        const arrow = document.querySelector('#arrow');
+        const plusButton = document.querySelector('.plus-btn');
+        if (!arrow.classList.contains('hidden')) {
+            arrow.classList.add('hidden');
+        }
+        if (plusButton.classList.contains('animate-bg')) {
+            plusButton.classList.remove('animate-bg');
+        }
+    }
 
-        this.toggleArrowIcon()
+    updateBookGrid() {
+        if (this.bookList.length == 0) {
+            this.showArrow();
+            return
+        } else {
+            this.hideArrow();
+        }
 
         while (this.bookGrid.firstChild) { //removing all items from html grid
+            if (this.bookGrid.firstChild == 'arrow') {
+                return
+            }
             this.bookGrid.removeChild(this.bookGrid.firstChild);
         }
+        
         this.bookList.forEach((book, index) => { //inserting everything else again, including changes made
             let bookItemDiv = this.createDivFromBook(book, index);
             this.bookGrid.appendChild(bookItemDiv)
         })
-    }
 
+    }
+    
 
 }
 
@@ -143,7 +175,6 @@ function toggleRead(e) {
     
     let bookClicked = lib.bookList[clickedCard.id];
     bookClicked.toggleRead();
-    console.log(lib.bookList.forEach(book => {book.wasRead}))
     
     if (clickedCard.classList.contains('read')) {
         clickedCard.classList.remove('read');
@@ -153,6 +184,7 @@ function toggleRead(e) {
 }
 
 function openForm() {
+    Library.prototype.hideArrow();
     let formBackgroundDiv = document.querySelector('.form-background');
     let formDiv = document.querySelector('.form-wrapper');
 
@@ -172,7 +204,6 @@ function formatText(text) {
     for (let i = 0; i < text.length; i++) {
         if (i === 0 || text[i].length > 3) {
             text[i] = text[i].charAt(0).toUpperCase() + text[i].substring(1);
-            console.log(text[i]);
         }
     }
     return text.join(' ');
@@ -194,6 +225,7 @@ function addBook(form) {
 }
 
 function closeForm(event) {
+    lib.updateBookGrid();
     let formBackgroundDiv = document.querySelector('.form-background');
     let formDiv = document.querySelector('.form-wrapper');
     formBackgroundDiv.classList.remove('active');
@@ -232,7 +264,6 @@ function addFakeBook() {
 let books = [new Book('The Tao of Lorem', 'Mr Ipsum', false),
 new Book('How to tame a pirate', 'Hamber Eard', false),
 new Book('Corruption, bribery, and other tales...', 'Louis Ignacius', false)]
-
 
 let lib = new Library([], bookGrid);
 
